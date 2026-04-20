@@ -26,7 +26,9 @@ function verificarLogin(req, res, next) {
 
 app.get('/login', (req, res) => {
     res.send(`
-        <link rel="stylesheet" href="/style.css">
+        <head>
+         <link rel="stylesheet" href="/style.css">
+         </head>
         <h2>Login do Sistema</h2>
 
         <form method="post" action="/login">
@@ -57,7 +59,9 @@ app.post('/login', (req, res) => {
     } else {
 
         res.send(`
-            <link rel="stylesheet" href="/style.css">
+            <head>
+              <link rel="stylesheet" href="/style.css">
+            </head>
         Login inválido <br>
         <a href="/login">Voltar</a>
         `);
@@ -70,7 +74,9 @@ app.get('/menu', verificarLogin, (req, res) => {
     const ultimo = req.cookies.ultimoAcesso || "Primeiro acesso";
 
     res.send(`
-        <link rel="stylesheet" href="/style.css">
+       <head>
+         <link rel="stylesheet" href="/style.css">
+       </head>
     <h2>Menu do Sistema</h2>
 
     Último acesso: ${ultimo}
@@ -91,7 +97,9 @@ let idUsuario = 1;
 app.get('/cadastroUsuario', verificarLogin, (req, res) => {
 
     res.send(`
-        <link rel="stylesheet" href="/style.css">
+       <head>
+         <link rel="stylesheet" href="/style.css">
+       </head>
 
     <h2>Cadastro de Usuário</h2>
 
@@ -134,7 +142,9 @@ app.post('/cadastrarUsuario', verificarLogin, (req, res) => {
     if (!nome || !data || !nick || !assunto) {
 
         res.send(`
-            <link rel="stylesheet" href="/style.css">
+            <head>
+             <link rel="stylesheet" href="/style.css">
+            </head>
         Todos os campos são obrigatórios.<br>
         <a href="/cadastroUsuario">Voltar</a>
         `);
@@ -173,7 +183,9 @@ let mensagens = [];
 app.get('/batepapo', verificarLogin, (req, res) => {
 
     res.send(`
-        <link rel="stylesheet" href="/style.css">
+        <head>
+          <link rel="stylesheet" href="/style.css">
+        </head>
 
     <h2>Bate-papo</h2>
 
@@ -226,8 +238,9 @@ app.get('/chat', verificarLogin, (req, res) => {
     });
 
     res.send(`
-        <link rel="stylesheet" href="/style.css">
-
+        <head>
+         <link rel="stylesheet" href="/style.css">
+        </head>
     <h2>Bate-papo sobre ${assunto}</h2>
 
     ${lista}
@@ -270,7 +283,9 @@ app.post('/postarMensagem', verificarLogin, (req, res) => {
     if (!usuario || !mensagem || mensagem.trim() === "") {
 
         res.send(`
-            <link rel="stylesheet" href="/style.css">
+            <head>
+             <link rel="stylesheet" href="/style.css">
+            </head>
         Mensagem inválida.<br>
         <a href="/chat?assunto=${assunto}">Voltar</a>
         `);
