@@ -24,6 +24,19 @@ function verificarLogin(req, res, next) {
         res.redirect('/login');
     }
 }
+app.post("/login", (req, res) => {
+  const { email, senha } = req.body;
+
+  if (email === "admin123@teste.com" && senha === "admin123") {
+    req.session.logado = true;
+
+    res.cookie("ultimoAcesso", new Date().toLocaleString());
+
+    res.redirect("/");
+  } else {
+    res.send("Login inválido");
+  }
+});
 
 app.get('/login', (req, res) => {
     res.send(`
