@@ -16,14 +16,6 @@ app.use(
         cookie: { maxAge: 30 * 60 * 1000 }
     })
 );
-
-function verificarLogin(req, res, next) {
-    if (req.session.logado) {
-        next();
-    } else {
-        res.redirect('/login');
-    }
-}
 app.post("/login", (req, res) => {
   const { email, senha } = req.body;
 
@@ -37,6 +29,14 @@ app.post("/login", (req, res) => {
     res.send("Login inválido");
   }
 });
+
+function verificarLogin(req, res, next) {
+    if (req.session.logado) {
+        next();
+    } else {
+        res.redirect('/login');
+    }
+}
 
 app.get('/login', (req, res) => {
     res.send(`
